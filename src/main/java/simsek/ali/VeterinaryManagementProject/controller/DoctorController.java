@@ -2,6 +2,7 @@ package simsek.ali.VeterinaryManagementProject.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import simsek.ali.VeterinaryManagementProject.dto.request.DoctorRequestDto;
 import simsek.ali.VeterinaryManagementProject.entity.Doctor;
 import simsek.ali.VeterinaryManagementProject.service.DoctorService;
 
@@ -25,7 +26,17 @@ public class DoctorController {
     }
 
     @PostMapping
-    public Doctor create (@RequestBody Doctor doctor){
-        return doctorService.createDoctor(doctor);
+    public Doctor createDoctor (@RequestBody DoctorRequestDto doctorRequestDto){
+        return doctorService.createDoctor(doctorRequestDto);
+    }
+
+    @PutMapping("/{id}")
+    public Doctor updateDoctor (@PathVariable Long id, @RequestBody DoctorRequestDto doctorRequestDto){
+        return doctorService.updateDoctor(id,doctorRequestDto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteDoctor(@PathVariable Long id){
+        doctorService.deleteDoctor(id);
     }
 }
