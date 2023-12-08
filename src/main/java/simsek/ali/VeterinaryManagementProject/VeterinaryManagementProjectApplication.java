@@ -10,4 +10,6 @@ public class VeterinaryManagementProjectApplication {
 		SpringApplication.run(VeterinaryManagementProjectApplication.class, args);
 	}
 
+
+
 }

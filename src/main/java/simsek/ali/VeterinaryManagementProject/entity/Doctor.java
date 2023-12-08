@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @RequiredArgsConstructor
+@ToString
 public class Doctor {
 
     @Id
@@ -35,7 +37,7 @@ public class Doctor {
     @Column(name = "phone")
     private String phone;
 
-    @OneToMany (mappedBy = "doctor", fetch = FetchType.LAZY)
+    @OneToMany (mappedBy = "doctor", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JsonIgnore
     private List<AvailableDate> availableDates;
 

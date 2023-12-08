@@ -52,6 +52,7 @@ public class CustomerService {
         return customerRepository.save(updatedCustomer);
     }
 
+
     public void deleteCustomer (Long id){
         Optional<Customer> customerFromDb = customerRepository.findById(id);
         if (customerFromDb.isEmpty()){
