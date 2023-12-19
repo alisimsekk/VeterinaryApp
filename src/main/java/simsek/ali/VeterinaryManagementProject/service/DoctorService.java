@@ -52,13 +52,14 @@ public class DoctorService {
         return doctorRepository.save(updatedDoctor);
     }
 
-    public void deleteDoctor (Long id){
+    public String deleteDoctor (Long id){
         Optional<Doctor> doctorFromDb = doctorRepository.findById(id);
         if (doctorFromDb.isEmpty()){
             throw new RuntimeException("This doctor could not found!!!");
         }
         else {
             doctorRepository.delete(doctorFromDb.get());
+            return "Doctor deleted.";
         }
     }
 }
