@@ -1,4 +1,4 @@
-Doctor
+*-*-*-* DOCTOR *-*-*-*
 
 {
   "name": "Gabrielle Fawdry",
@@ -30,7 +30,12 @@ Doctor
   "address": "Suite 76",
   "city": "Yaroslavskiy",
   "phone": "+7 479 157 8414"
-}, {
+},
+
+
+*-*-*-* CUSTOMER  *-*-*-*
+
+{
   "name": "Johann Hannah",
   "email": "jhannah5@istockphoto.com",
   "address": "Room 1576",
@@ -38,25 +43,25 @@ Doctor
   "phone": "+48 169 971 0632"
 }, {
   "name": "Elliot Royds",
-  "email": "eroyds6@creativecommons.org",
+  "mail": "eroyds6@creativecommons.org",
   "address": "Suite 51",
   "city": "Podivín",
   "phone": "+420 467 359 8073"
 }, {
   "name": "Trefor Fluit",
-  "email": "tfluit7@shareasale.com",
+  "mail": "tfluit7@shareasale.com",
   "address": "2nd Floor",
   "city": "Novoishimskiy",
   "phone": "+7 745 472 7044"
 }, {
   "name": "Moses Runacres",
-  "email": "mrunacres8@walmart.com",
+  "mail": "mrunacres8@walmart.com",
   "address": "Room 626",
   "city": "Slatina",
   "phone": "+385 769 326 8586"
 }, {
   "name": "Issiah Mayell",
-  "email": "imayell9@blogspot.com",
+  "mail": "imayell9@blogspot.com",
   "address": "Apt 750",
   "city": "Ängelholm",
   "phone": "+46 474 514 4740"

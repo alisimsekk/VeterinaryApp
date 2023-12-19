@@ -53,13 +53,14 @@ public class CustomerService {
     }
 
 
-    public void deleteCustomer (Long id){
+    public String deleteCustomer (Long id){
         Optional<Customer> customerFromDb = customerRepository.findById(id);
         if (customerFromDb.isEmpty()){
             throw new RuntimeException("This doctor could not found!!!");
         }
         else {
             customerRepository.delete(customerFromDb.get());
+            return "Customer deleted.";
         }
     }
 
