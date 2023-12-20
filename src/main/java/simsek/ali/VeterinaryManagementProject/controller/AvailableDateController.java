@@ -39,7 +39,7 @@ public class AvailableDateController {
     }
 
     @DeleteMapping("/{id}")
-    public boolean deleteAvailableDate(@PathVariable Long id){
+    public String deleteAvailableDate(@PathVariable Long id){
         return availableDateService.deleteAvailableDate(id);
     }
 }

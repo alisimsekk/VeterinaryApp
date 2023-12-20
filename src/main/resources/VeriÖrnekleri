@@ -66,3 +66,47 @@
   "city": "Ängelholm",
   "phone": "+46 474 514 4740"
 }
+
+
+*-*-*-* AVAILABLE DATE  *-*-*-*
+{
+  "availableDate": "2023-12-19",
+  "doctor": {
+    "id": 1
+  }
+}
+
+{
+  "availableDate": "2023-12-20",
+  "doctor": {
+    "id": 1
+  }
+}
+
+{
+  "availableDate": "2023-12-21",
+  "doctor": {
+    "id": 1
+  }
+}
+
+{
+  "availableDate": "2023-12-21",
+  "doctor": {
+    "id": 2
+  }
+}
+
+{
+  "availableDate": "2024-01-11",
+  "doctor": {
+    "id": 2
+  }
+}
+
+{
+  "availableDate": "2024-01-12",
+  "doctor": {
+    "id": 2
+  }
+}

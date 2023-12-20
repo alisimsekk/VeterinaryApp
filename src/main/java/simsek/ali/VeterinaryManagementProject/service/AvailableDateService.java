@@ -58,14 +58,14 @@ public class AvailableDateService {
         return availableDateRepository.save(updatedAvailableDate);
     }
 
-    public boolean deleteAvailableDate (Long id){
+    public String deleteAvailableDate (Long id){
         Optional<AvailableDate> availableDateFromDb = availableDateRepository.findById(id);
         if (availableDateFromDb.isEmpty()){
             throw new RuntimeException("This available date with id :" + id + " could not found!!!");
         }
         else {
             availableDateRepository.delete(availableDateFromDb.get());
-            return true;
+            return "Available date deleted.";
         }
     }
 }
