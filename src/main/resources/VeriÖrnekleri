@@ -110,3 +110,61 @@
     "id": 2
   }
 }
+
+*-*-*-* ANIMAL  *-*-*-*
+
+{
+        "name": "Fluffy",
+        "species": "Cat",
+        "breed": "Persian",
+        "gender": "Male",
+        "dateOfBirth": "2019-04-10",
+        "colour": "White",
+        "customer": {
+            "id": 1
+        }
+    },
+    {
+        "name": "Buddy",
+        "species": "Dog",
+        "breed": "Labrador",
+        "gender": "Male",
+        "dateOfBirth": "2018-08-25",
+        "colour": "Golden",
+        "customer": {
+            "id": 2
+        }
+    },
+    {
+        "name": "Whiskers",
+        "species": "Cat",
+        "breed": "Siamese",
+        "gender": "Female",
+        "dateOfBirth": "2020-01-15",
+        "colour": "Brown",
+        "customer": {
+            "id": 1
+        }
+    },
+    {
+        "name": "Rocky",
+        "species": "Dog",
+        "breed": "Bulldog",
+        "gender": "Male",
+        "dateOfBirth": "2017-11-02",
+        "colour": "Brown/White",
+        "customer": {
+            "id": 3
+        }
+    },
+    {
+        "name": "Coco",
+        "species": "Dog",
+        "breed": "Poodle",
+        "gender": "Female",
+        "dateOfBirth": "2016-06-20",
+        "colour": "Black",
+        "customer": {
+            "id": 2
+        }
+    }

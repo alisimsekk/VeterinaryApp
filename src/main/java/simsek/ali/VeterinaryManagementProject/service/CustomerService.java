@@ -48,7 +48,7 @@ public class CustomerService {
         }
 
         Customer updatedCustomer = customerFromDb.get();
-        modelMapper.map(customerRequestDto, updatedCustomer); // DoctorRequestDto -> Doctor
+        modelMapper.map(customerRequestDto, updatedCustomer);
         return customerRepository.save(updatedCustomer);
     }
 

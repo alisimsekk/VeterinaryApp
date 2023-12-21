@@ -52,7 +52,4 @@ public class Animal {
     @OneToMany(mappedBy = "animal")
     @JsonIgnore
     List<Appointment> appointments;
-
-
-
 }
