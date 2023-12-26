@@ -27,11 +27,11 @@ public class Vaccine {
     @Column(name = "code")
     private String code;
 
-    @Column(name = "startDate")
-    private LocalDate startDate;
+    @Column(name = "protection_start_date")
+    private LocalDate protectionStartDate;
 
-    @Column(name = "finishDate")
-    private LocalDate finishDate;
+    @Column(name = "protection_finish_date")
+    private LocalDate protectionFinishDate;
 
     @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn (name = "animal_id")
