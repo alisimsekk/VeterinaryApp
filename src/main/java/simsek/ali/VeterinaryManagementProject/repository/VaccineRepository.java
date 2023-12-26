@@ -5,11 +5,14 @@ import org.springframework.stereotype.Repository;
 import simsek.ali.VeterinaryManagementProject.entity.Vaccine;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface VaccineRepository extends JpaRepository<Vaccine, Long> {
 
 
-    Optional<Vaccine> findByNameAndCodeProtectionStartDateAfter(String name, String code, LocalDate protectionStartDate);
+    //List<Vaccine> findByNameAndCodeAndProtectionFinishDateGreaterThanEqual(String name, String code, LocalDate protectionStartDate);
+
+    List<Vaccine> findByNameAndCodeAndAnimalIdAndProtectionFinishDateGreaterThanEqual(String name, String code, Long id, LocalDate protectionStartDate);
 }

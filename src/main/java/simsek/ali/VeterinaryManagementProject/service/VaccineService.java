@@ -3,9 +3,7 @@ package simsek.ali.VeterinaryManagementProject.service;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import simsek.ali.VeterinaryManagementProject.dto.request.DoctorRequestDto;
-import simsek.ali.VeterinaryManagementProject.dto.request.VaccineRequestDto;
-import simsek.ali.VeterinaryManagementProject.entity.Doctor;
+import simsek.ali.VeterinaryManagementProject.dto.request.VaccineWithoutCustomerRequestDto;
 import simsek.ali.VeterinaryManagementProject.entity.Vaccine;
 import simsek.ali.VeterinaryManagementProject.repository.VaccineRepository;
 
@@ -27,36 +25,36 @@ public class VaccineService {
         return vaccineRepository.findById(id).orElseThrow(() -> new RuntimeException("id:" + id + "Vaccine could not found!!!"));
     }
 
-    public Vaccine createVaccine(VaccineRequestDto vaccineRequestDto){
-        Optional<Vaccine> existValidVaccineWithSameSpecsAnd =
-                vaccineRepository.findByNameAndCodeProtectionStartDateAfter(vaccineRequestDto.getName(), vaccineRequestDto.getCode(),vaccineRequestDto.getProtectionStartDate());
+    public Vaccine createVaccine(VaccineWithoutCustomerRequestDto vaccineWithoutCustomerRequestDto){
+        List<Vaccine> existValidVaccineWithSameSpecsAnd =
+                vaccineRepository.findByNameAndCodeAndAnimalIdAndProtectionFinishDateGreaterThanEqual(vaccineWithoutCustomerRequestDto.getName(), vaccineWithoutCustomerRequestDto.getCode(),vaccineWithoutCustomerRequestDto.getAnimalWithoutCustomer().getId(), vaccineWithoutCustomerRequestDto.getProtectionStartDate());
 
-        if (existValidVaccineWithSameSpecsAnd.isPresent()){
+        if (!existValidVaccineWithSameSpecsAnd.isEmpty()){
             throw new RuntimeException("The vaccine you want to save is still protective for this animal.");
         }
-        Vaccine newVaccine = modelMapper.map(vaccineRequestDto, Vaccine.class);
+        Vaccine newVaccine = modelMapper.map(vaccineWithoutCustomerRequestDto, Vaccine.class);
         return vaccineRepository.save(newVaccine);
     }
 
-    public Vaccine updateVaccine (Long id, VaccineRequestDto vaccineRequestDto){
+    public Vaccine updateVaccine (Long id, VaccineWithoutCustomerRequestDto vaccineWithoutCustomerRequestDto){
         Optional<Vaccine> vaccineFromDb = vaccineRepository.findById(id);
-        Optional<Vaccine> existOtherValidVaccineFromRequest =
-                vaccineRepository.findByNameAndCodeProtectionStartDateAfter(vaccineRequestDto.getName(), vaccineRequestDto.getCode(),vaccineRequestDto.getProtectionStartDate());
+        List<Vaccine> existOtherValidVaccineFromRequest =
+                vaccineRepository.findByNameAndCodeAndAnimalIdAndProtectionFinishDateGreaterThanEqual(vaccineWithoutCustomerRequestDto.getName(), vaccineWithoutCustomerRequestDto.getCode(),vaccineWithoutCustomerRequestDto.getAnimalWithoutCustomer().getId(), vaccineWithoutCustomerRequestDto.getProtectionStartDate());
 
         if (vaccineFromDb.isEmpty()){
             throw new RuntimeException("id:" + id + "Vaccine could not found!!!");
         }
 
-        if (existOtherValidVaccineFromRequest.isPresent() && !existOtherValidVaccineFromRequest.get().getId().equals(id)){
+        if (!existOtherValidVaccineFromRequest.isEmpty() && !existOtherValidVaccineFromRequest.get(existOtherValidVaccineFromRequest.size()-1).getId().equals(id)){
             throw new RuntimeException("This Vaccine has already been registered. That's why this request causes duplicate data");
         }
 
-        if (existOtherValidVaccineFromRequest.isPresent()){
+        if (!existOtherValidVaccineFromRequest.isEmpty()){
             throw new RuntimeException("The vaccine you want to update is still protective for this animal.");
         }
 
         Vaccine updatedVaccine = vaccineFromDb.get();
-        modelMapper.map(vaccineRequestDto, updatedVaccine); // VaccineRequestDto -> Vaccine
+        modelMapper.map(vaccineWithoutCustomerRequestDto, updatedVaccine); // VaccineRequestDto -> Vaccine
         return vaccineRepository.save(updatedVaccine);
     }
 
