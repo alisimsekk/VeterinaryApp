@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import simsek.ali.VeterinaryManagementProject.entity.AvailableDate;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Optional;
 
 @Repository
@@ -15,6 +16,5 @@ public interface AvailableDateRepository extends JpaRepository<AvailableDate, Lo
     Optional<AvailableDate> findAvailableDateAndDoctorIdOrDoctorEmail(LocalDate availableDate, Long id, String email);
 
 
-
-
+    Optional<AvailableDate> findByDoctorIdAndAvailableDate(Long id, LocalDate availableDate);
 }

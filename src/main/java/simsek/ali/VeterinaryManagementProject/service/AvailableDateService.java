@@ -4,12 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import simsek.ali.VeterinaryManagementProject.dto.request.AvailableDateRequestDto;
-import simsek.ali.VeterinaryManagementProject.dto.request.DoctorRequestDto;
 import simsek.ali.VeterinaryManagementProject.entity.AvailableDate;
-import simsek.ali.VeterinaryManagementProject.entity.Doctor;
 import simsek.ali.VeterinaryManagementProject.repository.AvailableDateRepository;
-import simsek.ali.VeterinaryManagementProject.repository.DoctorRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,6 +58,7 @@ public class AvailableDateService {
 
     public String deleteAvailableDate (Long id){
         Optional<AvailableDate> availableDateFromDb = availableDateRepository.findById(id);
+
         if (availableDateFromDb.isEmpty()){
             throw new RuntimeException("This available date with id :" + id + " could not found!!!");
         }
@@ -67,5 +66,9 @@ public class AvailableDateService {
             availableDateRepository.delete(availableDateFromDb.get());
             return "Available date deleted.";
         }
+    }
+
+    public Optional<AvailableDate> findByDoctorIdAndDate(Long id, LocalDate localDate) {
+        return availableDateRepository.findByDoctorIdAndAvailableDate(id, localDate);
     }
 }
