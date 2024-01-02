@@ -5,13 +5,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import simsek.ali.VeterinaryManagementProject.dto.request.VaccineWithoutCustomerRequestDto;
+import simsek.ali.VeterinaryManagementProject.entity.Animal;
 import simsek.ali.VeterinaryManagementProject.entity.Vaccine;
 import simsek.ali.VeterinaryManagementProject.service.VaccineService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/vaccine")
+@RequestMapping("/api/v1/vaccines")
 @RequiredArgsConstructor
 public class VaccineController {
 
@@ -33,6 +34,11 @@ public class VaccineController {
         else {
             return ResponseEntity.notFound().build();
         }
+    }
+    @GetMapping("/searchByAnimal")
+    public ResponseEntity<List<Vaccine>> findVaccinesByAnimal (@RequestParam Long id){
+        List<Vaccine> vaccineListSearchByAnimal = vaccineService.findVaccinesByAnimal(id);
+        return ResponseEntity.ok().body(vaccineListSearchByAnimal);
     }
 
     @PostMapping

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import simsek.ali.VeterinaryManagementProject.dto.request.VaccineWithoutCustomerRequestDto;
+import simsek.ali.VeterinaryManagementProject.entity.Animal;
 import simsek.ali.VeterinaryManagementProject.entity.Vaccine;
 import simsek.ali.VeterinaryManagementProject.repository.VaccineRepository;
 
@@ -24,7 +25,9 @@ public class VaccineService {
     public Vaccine findVaccineById (Long id){
         return vaccineRepository.findById(id).orElseThrow(() -> new RuntimeException("id:" + id + "Vaccine could not found!!!"));
     }
-
+    public List<Vaccine> findVaccinesByAnimal(Long id) {
+        return vaccineRepository.findByAnimalId(id);
+    }
     public Vaccine createVaccine(VaccineWithoutCustomerRequestDto vaccineWithoutCustomerRequestDto){
         List<Vaccine> existValidVaccineWithSameSpecsAnd =
                 vaccineRepository.findByNameAndCodeAndAnimalIdAndProtectionFinishDateGreaterThanEqual(vaccineWithoutCustomerRequestDto.getName(), vaccineWithoutCustomerRequestDto.getCode(),vaccineWithoutCustomerRequestDto.getAnimalWithoutCustomer().getId(), vaccineWithoutCustomerRequestDto.getProtectionStartDate());
@@ -68,5 +71,4 @@ public class VaccineService {
             return "Vaccine deleted.";
         }
     }
-
 }
