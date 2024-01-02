@@ -9,6 +9,7 @@ import simsek.ali.VeterinaryManagementProject.entity.Animal;
 import simsek.ali.VeterinaryManagementProject.entity.Vaccine;
 import simsek.ali.VeterinaryManagementProject.service.VaccineService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -34,6 +35,11 @@ public class VaccineController {
         else {
             return ResponseEntity.notFound().build();
         }
+    }
+    @GetMapping("/searchByVaccinationRange")
+    public ResponseEntity<List<Vaccine>> findAnimalsByVaccineProtectionFinishDateRange (@RequestParam LocalDate startDate, @RequestParam LocalDate endDate ){
+        List<Vaccine> vaccineListSearchByVaccineProtectionFinishDateRange = vaccineService.findAnimalsByVaccineProtectionFinishDateRange(startDate, endDate);
+        return ResponseEntity.ok().body(vaccineListSearchByVaccineProtectionFinishDateRange);
     }
     @GetMapping("/searchByAnimal")
     public ResponseEntity<List<Vaccine>> findVaccinesByAnimal (@RequestParam Long id){

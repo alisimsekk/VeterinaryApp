@@ -8,6 +8,7 @@ import simsek.ali.VeterinaryManagementProject.entity.Animal;
 import simsek.ali.VeterinaryManagementProject.entity.Vaccine;
 import simsek.ali.VeterinaryManagementProject.repository.VaccineRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,9 +26,15 @@ public class VaccineService {
     public Vaccine findVaccineById (Long id){
         return vaccineRepository.findById(id).orElseThrow(() -> new RuntimeException("id:" + id + "Vaccine could not found!!!"));
     }
+
     public List<Vaccine> findVaccinesByAnimal(Long id) {
         return vaccineRepository.findByAnimalId(id);
     }
+
+    public List<Vaccine> findAnimalsByVaccineProtectionFinishDateRange(LocalDate startDate, LocalDate endDate) {
+        return vaccineRepository.findByProtectionFinishDateBetween(startDate,endDate);
+    }
+
     public Vaccine createVaccine(VaccineWithoutCustomerRequestDto vaccineWithoutCustomerRequestDto){
         List<Vaccine> existValidVaccineWithSameSpecsAnd =
                 vaccineRepository.findByNameAndCodeAndAnimalIdAndProtectionFinishDateGreaterThanEqual(vaccineWithoutCustomerRequestDto.getName(), vaccineWithoutCustomerRequestDto.getCode(),vaccineWithoutCustomerRequestDto.getAnimalWithoutCustomer().getId(), vaccineWithoutCustomerRequestDto.getProtectionStartDate());

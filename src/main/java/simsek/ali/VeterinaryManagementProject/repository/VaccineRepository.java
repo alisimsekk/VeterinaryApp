@@ -17,4 +17,6 @@ public interface VaccineRepository extends JpaRepository<Vaccine, Long> {
     List<Vaccine> findByNameAndCodeAndAnimalIdAndProtectionFinishDateGreaterThanEqual(String name, String code, Long id, LocalDate protectionStartDate);
 
     List<Vaccine> findByAnimalId(Long id);
+
+    List<Vaccine> findByProtectionFinishDateBetween(LocalDate startDate, LocalDate endDate);
 }
