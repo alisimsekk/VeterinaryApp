@@ -35,8 +35,18 @@ public class AppointmentService {
         return appointmentRepository.findById(id).orElseThrow(() -> new RuntimeException("id:" + id + "Appointment could not found!!!"));
     }
 
-    public List<Appointment> findAppointmentByDoctorIdAndDateRange(Long id, LocalDate startDate, LocalDate endDate) {
-        return appointmentRepository.findByDoctorIdOrDateBetween(id,startDate.atStartOfDay(),endDate.atStartOfDay());
+    public List<Appointment> findAppointmentByDoctorIdAndDateRange(Long doctorId, LocalDate startDate, LocalDate endDate) {
+        if (doctorId==null){
+            return appointmentRepository.findByDateBetween(startDate.atStartOfDay(),endDate.atStartOfDay());
+        }
+        return appointmentRepository.findByDoctorIdAndDateBetween(doctorId,startDate.atStartOfDay(),endDate.atStartOfDay());
+    }
+
+    public List<Appointment> findAppointmentByAnimalIdAndDateRange(Long animalId, LocalDate startDate, LocalDate endDate) {
+        if (animalId==null){
+            return appointmentRepository.findByDateBetween(startDate.atStartOfDay(),endDate.atStartOfDay());
+        }
+        return appointmentRepository.findByAnimalIdAndDateBetween(animalId,startDate.atStartOfDay(),endDate.atStartOfDay());
     }
 
     public Appointment createAppointment(AppointmentRequestDto appointmentRequestDto){

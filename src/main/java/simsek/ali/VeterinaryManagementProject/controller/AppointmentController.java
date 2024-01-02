@@ -48,6 +48,17 @@ public class AppointmentController {
         }
     }
 
+    @GetMapping("/searchByAnimalAndDateRange")
+    public ResponseEntity<List<Appointment>> findAppointmentByAnimalIdAndDateRange (@RequestParam(value = "id", required = false) Long id,@RequestParam LocalDate startDate,@RequestParam LocalDate endDate){
+        List<Appointment> appointmentListSearchByAnimalAndDateRange = appointmentService.findAppointmentByAnimalIdAndDateRange(id, startDate, endDate);
+        if (appointmentListSearchByAnimalAndDateRange != null){
+            return ResponseEntity.ok().body(appointmentListSearchByAnimalAndDateRange);
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping
     public ResponseEntity<Appointment> createAppointment (@RequestBody AppointmentRequestDto appointmentRequestDto){
         Appointment createdAppointment = appointmentService.createAppointment(appointmentRequestDto);
