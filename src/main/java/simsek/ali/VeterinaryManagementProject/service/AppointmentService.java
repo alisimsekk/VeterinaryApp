@@ -12,6 +12,7 @@ import simsek.ali.VeterinaryManagementProject.entity.Vaccine;
 import simsek.ali.VeterinaryManagementProject.repository.AppointmentRepository;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
@@ -29,8 +30,13 @@ public class AppointmentService {
     public List<Appointment> findAllAppointments() {
         return appointmentRepository.findAll();
     }
+
     public Appointment findAppointmentById (Long id){
         return appointmentRepository.findById(id).orElseThrow(() -> new RuntimeException("id:" + id + "Appointment could not found!!!"));
+    }
+
+    public List<Appointment> findAppointmentByDoctorIdAndDateRange(Long id, LocalDate startDate, LocalDate endDate) {
+        return appointmentRepository.findByDoctorIdOrDateBetween(id,startDate.atStartOfDay(),endDate.atStartOfDay());
     }
 
     public Appointment createAppointment(AppointmentRequestDto appointmentRequestDto){
@@ -105,5 +111,4 @@ public class AppointmentService {
             return "Appointment deleted.";
         }
     }
-
 }

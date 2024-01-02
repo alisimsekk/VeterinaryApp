@@ -10,6 +10,7 @@ import simsek.ali.VeterinaryManagementProject.entity.Appointment;
 import simsek.ali.VeterinaryManagementProject.entity.Vaccine;
 import simsek.ali.VeterinaryManagementProject.service.AppointmentService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -30,6 +31,17 @@ public class AppointmentController {
         Appointment appointment = appointmentService.findAppointmentById(id);
         if (appointment != null){
             return ResponseEntity.ok().body(appointment);
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/searchByDoctorAndDateRange")
+    public ResponseEntity<List<Appointment>> findAppointmentByDoctorIdAndDateRange (@RequestParam(value = "id", required = false) Long id,@RequestParam LocalDate startDate,@RequestParam LocalDate endDate){
+        List<Appointment> appointmentListSearchByDoctorAndDateRange = appointmentService.findAppointmentByDoctorIdAndDateRange(id, startDate, endDate);
+        if (appointmentListSearchByDoctorAndDateRange != null){
+            return ResponseEntity.ok().body(appointmentListSearchByDoctorAndDateRange);
         }
         else {
             return ResponseEntity.notFound().build();

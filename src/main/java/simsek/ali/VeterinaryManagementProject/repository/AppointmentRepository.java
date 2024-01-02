@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import simsek.ali.VeterinaryManagementProject.entity.Appointment;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -13,4 +14,5 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
     Optional<Appointment> findByDateAndDoctorIdAndAnimalId(LocalDateTime date, Long id, Long id1);
     Optional<Appointment> findByDateAndDoctorId(LocalDateTime date, Long id);
 
+    List<Appointment> findByDoctorIdOrDateBetween(Long id, LocalDateTime localDateTime, LocalDateTime localDateTime1);
 }
