@@ -25,6 +25,10 @@ public class CustomerService {
         return customerRepository.findById(id).orElseThrow(() -> new RuntimeException("id:" + id + "Customer could not found!!!"));
     }
 
+    public List<Customer> findCustomersByName(String name) {
+        return customerRepository.findByNameContaining(name);
+    }
+
     public Customer createCustomer(CustomerRequestDto customerRequestDto){
         Optional<Customer> existCustomerWithSameSpecs = customerRepository.findByNameAndMail(customerRequestDto.getName(), customerRequestDto.getMail());
 
@@ -63,6 +67,7 @@ public class CustomerService {
             return "Customer deleted.";
         }
     }
+
 
 
 }

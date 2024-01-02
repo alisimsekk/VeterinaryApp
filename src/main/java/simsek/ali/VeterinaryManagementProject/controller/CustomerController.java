@@ -9,7 +9,7 @@ import simsek.ali.VeterinaryManagementProject.service.CustomerService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/customer")
+@RequestMapping("/api/v1/customers")
 @RequiredArgsConstructor
 public class CustomerController {
 
@@ -23,6 +23,11 @@ public class CustomerController {
     @GetMapping("/{id}")
     public Customer findCustomerById (@PathVariable Long id){
         return customerService.findCustomerById(id);
+    }
+
+    @GetMapping("/searchByName")
+    public List<Customer> findCustomersByName (@RequestParam String name){
+        return customerService.findCustomersByName(name);
     }
 
     @PostMapping
