@@ -22,7 +22,6 @@ public class AnimalController {
     @GetMapping
     public ResponseEntity<List<Animal>> findAllAnimals(){
         List<Animal> animalList = animalService.findAllAnimals();
-
         return ResponseEntity.ok().body(animalList);
     }
 
@@ -35,6 +34,18 @@ public class AnimalController {
         else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/searchByName")
+    public ResponseEntity<List<Animal>> findAnimalsByName (@RequestParam String name){
+        List<Animal> animalListSearchByName = animalService.findAnimalsByName(name);
+        return ResponseEntity.ok().body(animalListSearchByName);
+    }
+
+    @GetMapping("/searchByCustomer")
+    public ResponseEntity<List<Animal>> findAnimalsByCustomer (@RequestParam Long id){
+        List<Animal> animalListSearchByCustomer = animalService.findAnimalsByCustomer(id);
+        return ResponseEntity.ok().body(animalListSearchByCustomer);
     }
 
     @PostMapping

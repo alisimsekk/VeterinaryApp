@@ -26,6 +26,12 @@ public class AnimalService {
     public Animal findAnimalById (Long id){
         return animalRepository.findById(id).orElseThrow(() -> new RuntimeException("id:" + id + " animal could not found!!!"));
     }
+    public List<Animal> findAnimalsByName(String name) {
+        return animalRepository.findByNameContaining(name);
+    }
+    public List<Animal> findAnimalsByCustomer(Long id) {
+        return animalRepository.findByCustomerId(id);
+    }
 
     public Animal createAnimal(AnimalRequestDto animalRequestDto){
         Optional<Animal> existAnimalWithSameSpecs = animalRepository.findByNameAndSpeciesAndGenderAndDateOfBirth(animalRequestDto.getName(),animalRequestDto.getSpecies(),animalRequestDto.getGender(),animalRequestDto.getDateOfBirth());
@@ -64,5 +70,4 @@ public class AnimalService {
             return "Animal deleted.";
         }
     }
-
 }
