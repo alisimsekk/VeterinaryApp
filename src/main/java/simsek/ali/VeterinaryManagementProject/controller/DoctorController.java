@@ -9,7 +9,7 @@ import simsek.ali.VeterinaryManagementProject.service.DoctorService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/doctor")
+@RequestMapping("/api/v1/doctors")
 @RequiredArgsConstructor
 public class DoctorController {
 

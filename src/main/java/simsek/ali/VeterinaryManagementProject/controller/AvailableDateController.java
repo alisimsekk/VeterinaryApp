@@ -12,7 +12,7 @@ import simsek.ali.VeterinaryManagementProject.service.DoctorService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/available-date")
+@RequestMapping("/api/v1/available-dates")
 @RequiredArgsConstructor
 public class AvailableDateController {
 
