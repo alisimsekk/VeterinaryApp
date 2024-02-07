@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import simsek.ali.VeterinaryManagementProject.dto.request.AnimalWithoutCustomerRequestDto;
 
 import java.time.LocalDate;
 
@@ -18,4 +17,5 @@ public class VaccineWithoutCustomerRequestDto {
     private LocalDate protectionStartDate;
     private LocalDate protectionFinishDate;
     private AnimalWithoutCustomerRequestDto animalWithoutCustomer;
+    private Long reportId;
 }

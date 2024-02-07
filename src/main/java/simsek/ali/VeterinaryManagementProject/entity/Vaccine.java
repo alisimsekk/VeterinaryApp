@@ -1,5 +1,6 @@
 package simsek.ali.VeterinaryManagementProject.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -36,5 +37,10 @@ public class Vaccine {
     @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn (name = "animal_id")
     private Animal animal;
+
+    @ManyToOne (fetch = FetchType.LAZY)
+    @JoinColumn (name = "report_id")
+    @JsonIgnore
+    private Report report;
 
 }

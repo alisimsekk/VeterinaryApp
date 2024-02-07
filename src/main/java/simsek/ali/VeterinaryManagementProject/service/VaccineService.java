@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import simsek.ali.VeterinaryManagementProject.dto.request.VaccineWithoutCustomerRequestDto;
-import simsek.ali.VeterinaryManagementProject.entity.Animal;
 import simsek.ali.VeterinaryManagementProject.entity.Vaccine;
 import simsek.ali.VeterinaryManagementProject.repository.VaccineRepository;
 
@@ -17,6 +16,7 @@ import java.util.Optional;
 public class VaccineService {
 
     private final VaccineRepository vaccineRepository;
+    private final ReportService reportService;
     private final ModelMapper modelMapper;
 
     public List<Vaccine> findAllVaccines (){
@@ -42,7 +42,9 @@ public class VaccineService {
         if (!existValidVaccineWithSameSpecsAnd.isEmpty()){
             throw new RuntimeException("The vaccine you want to save is still protective for this animal.");
         }
+
         Vaccine newVaccine = modelMapper.map(vaccineWithoutCustomerRequestDto, Vaccine.class);
+        newVaccine.setReport(reportService.findReportById(vaccineWithoutCustomerRequestDto.getReportId()));
         return vaccineRepository.save(newVaccine);
     }
 

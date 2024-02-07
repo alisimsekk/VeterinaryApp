@@ -1,5 +1,6 @@
 package simsek.ali.VeterinaryManagementProject.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -31,4 +32,8 @@ public class Appointment {
     @ManyToOne (fetch = FetchType.EAGER)
     @JoinColumn (name = "animal_id")
     private Animal animal;
+
+    @OneToOne (mappedBy = "appointment")
+    @JsonIgnore
+    private Report report;
 }
